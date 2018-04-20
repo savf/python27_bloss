@@ -8,4 +8,5 @@ RUN rm -rf /var/lib/apt/lists/*
 
 # Install python packages
 COPY requirements.txt /tmp/
+RUN pip install --upgrade pip
 RUN pip install --requirement /tmp/requirements.txt
