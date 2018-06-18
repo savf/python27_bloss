@@ -8,11 +8,8 @@ RUN apt-get update && apt-get install -y \
     python-dev \
     libssl-dev
 RUN rm -rf /var/lib/apt/lists/*
-RUN git clone --recursive https://github.com/ethereum/solidity.git /tmp/solidity
-RUN cd /tmp/solidity && git checkout tags/v0.4.21 --quiet
-RUN cd /tmp/solidity && git submodule update --init --recursive
-RUN /tmp/solidity/scripts/install_deps.sh
-RUN /tmp/solidity/scripts/build.sh
+COPY solc-0.4.24-amd64.deb /tmp/
+RUN apt install /tmp/solc-0.4.24-amd64.deb
 
 # Install python packages
 COPY requirements.txt /tmp/
