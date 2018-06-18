@@ -1,4 +1,4 @@
-FROM python:2.7.15-slim-stretch
+FROM python:2.7.15-stretch
 
 MAINTAINER Stephan Mannhart
 
@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev
 RUN rm -rf /var/lib/apt/lists/*
 COPY solc-0.4.24-amd64.deb /tmp/
-RUN apt install /tmp/solc-0.4.24-amd64.deb
+RUN apt install -y /tmp/solc-0.4.24-amd64.deb
 
 # Install python packages
 COPY requirements.txt /tmp/
