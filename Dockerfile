@@ -1,15 +1,22 @@
-FROM python:2.7.15-stretch
+FROM python:2.7.15-slim-stretch
 
 MAINTAINER Stephan Mannhart
 
 RUN apt-get update && apt-get install -y \
+	build-essential \
+	cmake \
+	g++ \
+	gcc \
+	libboost-all-dev \
+	unzip \
+	libz3-dev \
 	sudo \
 	git \
     python-dev \
     libssl-dev
 RUN rm -rf /var/lib/apt/lists/*
 COPY solc-0.4.24-amd64.deb /tmp/
-RUN apt install -y /tmp/solc-0.4.24-amd64.deb
+RUN apt-get install -y /tmp/solc-0.4.24-amd64.deb
 
 # Install python packages
 COPY requirements.txt /tmp/
